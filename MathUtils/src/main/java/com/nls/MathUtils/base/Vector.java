@@ -20,7 +20,7 @@ import java.lang.reflect.Array;
 @Getter
 @Setter
 @Accessors(chain = true)
-public abstract class Vector<V extends Number> implements LAO {
+public abstract class Vector<V extends Number> implements IVector<V>, LAO {
     /**
      * The default vector type, which can be set and updated.
      * Initially set to {@link VectorType#ROW_VECTOR}.
@@ -65,9 +65,10 @@ public abstract class Vector<V extends Number> implements LAO {
      *         if <code>clazz</code> is <code>null</code>
      */
     @SuppressWarnings("unchecked")
-    protected Vector(@NotNull Class<V> clazz, int size, @NotNull VectorType vectorType, @Nullable String name,
+    protected Vector(@NotNull Class<V> clazz, int size,
+                     @NotNull VectorType vectorType, @Nullable String name,
                      V... values) {
-        defaultValue = createDefaultValue(SupportedVectorType.getInstance(clazz));
+        defaultValue = IVector.createDefaultValue(SupportedVectorType.getInstance(clazz));
         setVectorType(vectorType).setName(name);
         this.values = (V[]) Array.newInstance(clazz, size);
         System.arraycopy(values, 0, this.values, 0, values.length);
@@ -87,8 +88,8 @@ public abstract class Vector<V extends Number> implements LAO {
      *         if <code>clazz</code> is <code>null</code>
      */
     @SuppressWarnings("unchecked")
-    protected Vector(@NotNull Class<V> clazz, int size, @NotNull VectorType vectorType) {
-        this(clazz, size, vectorType, null);
+    protected Vector(@NotNull Class<V> clazz, int size, @NotNull VectorType vectorType, V... values) {
+        this(clazz, size, vectorType, null, values);
     }
     
     /**
@@ -104,8 +105,8 @@ public abstract class Vector<V extends Number> implements LAO {
      *         if <code>clazz</code> is <code>null</code>
      */
     @SuppressWarnings("unchecked")
-    protected Vector(@NotNull Class<V> clazz, int size, @Nullable String name) {
-        this(clazz, size, DEFAULT_VECTOR_TYPE, name);
+    protected Vector(@NotNull Class<V> clazz, int size, @Nullable String name, V... values) {
+        this(clazz, size, DEFAULT_VECTOR_TYPE, name, values);
     }
     
     /**
@@ -119,61 +120,16 @@ public abstract class Vector<V extends Number> implements LAO {
      *         if <code>clazz</code> is <code>null</code>
      */
     @SuppressWarnings("unchecked")
-    protected Vector(@NotNull Class<V> clazz, int size) {
-        this(clazz, size, DEFAULT_VECTOR_TYPE, null);
+    protected Vector(@NotNull Class<V> clazz, int size, V... values) {
+        this(clazz, size, DEFAULT_VECTOR_TYPE, null, values);
     }
     
-    /**
-     * Creates a default value for the specified class type.
-     *
-     * <p>This method supports the following types:</p>
-     * <ul>
-     *     <li><code>Byte</code>: Returns <code>0</code></li>
-     *     <li><code>Double</code>: Returns <code>0.0</code></li>
-     *     <li><code>Float</code>: Returns <code>0.0f</code></li>
-     *     <li><code>Integer</code>: Returns <code>0</code></li>
-     *     <li><code>Long</code>: Returns <code>0L</code></li>
-     *     <li><code>Short</code>: Returns <code>0</code></li>
-     * </ul>
-     *
-     * <p>Currently, support for <code>Boolean</code> and <code>Character</code> is commented out,
-     * but is planned for future implementation.</p>
-     *
-     * @param type
-     *         the type for which the default value is to be created.
-     * @param <V>
-     *         the type of the value, which must extend {@link Number}.
-     * @return the default value for the specified type.
-     * @throws NullPointerException
-     *         if <code>type</code> is <code>null</code>.
-     */
-    @Contract(pure = true)
-    public static <V extends Number> @NotNull V createDefaultValue(@NotNull SupportedVectorType type) {
-        Object defaultValue = switch (type) {
-            case BYTE -> (byte) 0;
-            case DOUBLE -> 0.0;
-            case FLOAT -> 0.0f;
-            case INTEGER -> 0;
-            case LONG -> 0L;
-            case SHORT -> (short) 0;
-        };
-        return (V) defaultValue;
-    }
+    @Override
+    public V[] getValues() { return values; }
     
-    /**
-     * Updates the default vector type to the specified type.
-     *
-     * @param vectorType
-     *         the new default vector type to set
-     */
-    public static void updateDefaultVectorType(@NotNull VectorType vectorType) { DEFAULT_VECTOR_TYPE = vectorType; }
+    @Override
+    public void updateDefaultVectorType(@NotNull VectorType vectorType) { DEFAULT_VECTOR_TYPE = vectorType; }
     
-    /**
-     * Retrieves the current default vector type.
-     *
-     * @return the current default vector type
-     */
-    public static @NotNull VectorType getDefaultVectorType() { return DEFAULT_VECTOR_TYPE; }
-    
-    protected V[] getValues() { return values; }
+    @Override
+    public @NotNull VectorType getDefaultVectorType() { return DEFAULT_VECTOR_TYPE; }
 }

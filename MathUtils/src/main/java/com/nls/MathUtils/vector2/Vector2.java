@@ -4,44 +4,41 @@ import com.nls.MathUtils.base.Vector;
 import com.nls.MathUtils.base.VectorType;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class Vector2<V extends Number> extends Vector<V> {
-    public Vector2(Class<V> clazz) { super(clazz, 2); }
+public abstract class Vector2<V extends Number> extends Vector<V> implements IVector2<V> {
+    public Vector2(@NotNull Class<V> clazz) { super(clazz, 2); }
     
-    public Vector2(Class<V> clazz, V xy) { this(clazz, xy, xy); }
+    public Vector2(@NotNull Class<V> clazz, @NotNull V xy) { super(clazz, 2, xy, xy); }
     
-    public Vector2(Class<V> clazz, V x, V y) { super(clazz, 2, getDefaultVectorType(), null, x, y); }
+    public Vector2(@NotNull Class<V> clazz, @NotNull V x, @NotNull V y) { super(clazz, 2, x, y); }
     
-    public Vector2(Class<V> clazz, VectorType vectorType) { super(clazz, 2, vectorType); }
+    public Vector2(@NotNull Class<V> clazz, @NotNull VectorType vectorType) { super(clazz, 2, vectorType); }
     
-    public Vector2(Class<V> clazz, V xy, VectorType vectorType) { this(clazz, xy, xy, vectorType); }
-    
-    public Vector2(Class<V> clazz, V x, V y, VectorType vectorType) { this(clazz, x, y, vectorType, null); }
-    
-    public Vector2(Class<V> clazz, String name) { super(clazz, 2, getDefaultVectorType(), name); }
-    
-    public Vector2(Class<V> clazz, V xy, String name) { this(clazz, xy, xy, name); }
-    
-    public Vector2(Class<V> clazz, V x, V y, String name) { this(clazz, x, y, getDefaultVectorType(), name); }
-    
-    public Vector2(Class<V> clazz, VectorType vectorType, String name) { super(clazz, 2, vectorType, name); }
-    
-    public Vector2(Class<V> clazz, V xy, VectorType vectorType, String name) { this(clazz, xy, xy, vectorType, name); }
-    
-    public Vector2(Class<V> clazz, V x, V y, VectorType vectorType, String name) {
-        super(clazz, 2, vectorType, name,
-                x, y);
+    public Vector2(@NotNull Class<V> clazz, @NotNull V xy, @NotNull VectorType vectorType) {
+        super(clazz, 2, vectorType, xy, xy);
     }
     
-    public @NotNull V getX() { return getValues()[0]; }
+    public Vector2(@NotNull Class<V> clazz, @NotNull V x, @NotNull V y, @NotNull VectorType vectorType) {
+        super(clazz, 2, vectorType, x, y);
+    }
     
-    public @NotNull Vector2<V> setX(@NotNull V x) { getValues()[0] = x; return this; }
+    public Vector2(@NotNull Class<V> clazz, @NotNull String name) { super(clazz, 2, name); }
     
-    public @NotNull V getY() { return getValues()[1]; }
+    public Vector2(@NotNull Class<V> clazz, @NotNull V xy, @NotNull String name) { super(clazz, 2, name, xy, xy); }
     
-    public @NotNull Vector2<V> setY(@NotNull V y) { getValues()[1] = y; return this; }
+    public Vector2(@NotNull Class<V> clazz, @NotNull V x, @NotNull V y, @NotNull String name) {
+        super(clazz, 2, name, x, y);
+    }
     
-    public @NotNull Vector2<V> set(@NotNull V xy) { return set(xy, xy); }
+    public Vector2(@NotNull Class<V> clazz, @NotNull VectorType vectorType, @NotNull String name) {
+        super(clazz, 2, vectorType, name);
+    }
     
-    public @NotNull Vector2<V> set(@NotNull V x, @NotNull V y) { return setX(x).setY(y); }
+    public Vector2(@NotNull Class<V> clazz, @NotNull V xy, @NotNull VectorType vectorType, @NotNull String name) {
+        super(clazz, 2, vectorType, name, xy, xy);
+    }
     
+    public Vector2(@NotNull Class<V> clazz, @NotNull V x, @NotNull V y, @NotNull VectorType vectorType,
+                   @NotNull String name) {
+        super(clazz, 2, vectorType, name, x, y);
+    }
 }

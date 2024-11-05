@@ -6,52 +6,52 @@ import org.jetbrains.annotations.NotNull;
 
 public class Vector2f extends Vector2<Float> {
     
-    public Vector2f() {
-        super(Float.class);
+    public Vector2f(@NotNull Class<Float> clazz) {
+        super(clazz);
     }
     
-    public Vector2f(float xy) {
-        super(Float.class, xy);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float xy) {
+        super(clazz, xy);
     }
     
-    public Vector2f(float x, float y) {
-        super(Float.class, x, y);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float x, @NotNull Float y) {
+        super(clazz, x, y);
     }
     
-    public Vector2f(VectorType vectorType) {
-        super(Float.class, vectorType);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull VectorType vectorType) {
+        super(clazz, vectorType);
     }
     
-    public Vector2f(float xy, VectorType vectorType) {
-        super(Float.class, xy, vectorType);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float xy, @NotNull VectorType vectorType) {
+        super(clazz, xy, vectorType);
     }
     
-    public Vector2f(float x, float y, VectorType vectorType) {
-        super(Float.class, x, y, vectorType);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float x, @NotNull Float y, @NotNull VectorType vectorType) {
+        super(clazz, x, y, vectorType);
     }
     
-    public Vector2f(String name) {
-        super(Float.class, name);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull String name) {
+        super(clazz, name);
     }
     
-    public Vector2f(float xy, String name) {
-        super(Float.class, xy, name);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float xy, @NotNull String name) {
+        super(clazz, xy, name);
     }
     
-    public Vector2f(float x, float y, String name) {
-        super(Float.class, x, y, name);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float x, @NotNull Float y, @NotNull String name) {
+        super(clazz, x, y, name);
     }
     
-    public Vector2f(VectorType vectorType, String name) {
-        super(Float.class, vectorType, name);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull VectorType vectorType, @NotNull String name) {
+        super(clazz, vectorType, name);
     }
     
-    public Vector2f(float xy, VectorType vectorType, String name) {
-        super(Float.class, xy, vectorType, name);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float xy, @NotNull VectorType vectorType, @NotNull String name) {
+        super(clazz, xy, vectorType, name);
     }
     
-    public Vector2f(float x, float y, VectorType vectorType, String name) {
-        super(Float.class, x, y, vectorType, name);
+    public Vector2f(@NotNull Class<Float> clazz, @NotNull Float x, @NotNull Float y, @NotNull VectorType vectorType, @NotNull String name) {
+        super(clazz, x, y, vectorType, name);
     }
     
     @Override
