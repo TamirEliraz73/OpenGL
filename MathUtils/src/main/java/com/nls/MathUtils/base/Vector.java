@@ -1,5 +1,6 @@
 package com.nls.MathUtils.base;
 
+import com.nls.MathUtils.intrrface.LAO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -19,7 +20,7 @@ import java.lang.reflect.Array;
 @Getter
 @Setter
 @Accessors(chain = true)
-public abstract class Vector<V extends Number> {
+public abstract class Vector<V extends Number> implements LAO {
     /**
      * The default vector type, which can be set and updated.
      * Initially set to {@link VectorType#ROW_VECTOR}.
@@ -122,7 +123,6 @@ public abstract class Vector<V extends Number> {
         this(clazz, size, DEFAULT_VECTOR_TYPE, null);
     }
     
-    
     /**
      * Creates a default value for the specified class type.
      *
@@ -174,4 +174,6 @@ public abstract class Vector<V extends Number> {
      * @return the current default vector type
      */
     public static @NotNull VectorType getDefaultVectorType() { return DEFAULT_VECTOR_TYPE; }
+    
+    protected V[] getValues() { return values; }
 }

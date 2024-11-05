@@ -1,5 +1,7 @@
 package com.nls.MathUtils.intrrface;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Interface representing basic linear algebra operations.
  * This interface defines methods for performing addition, subtraction,
@@ -17,7 +19,7 @@ public interface LAO {
      * @param rhs the linear algebra object to add
      * @return the result of the addition as a new LAO object
      */
-    public LAO add(LAO rhs);
+    public @NotNull LAO add(@NotNull LAO rhs);
     
     /**
      * Subtracts the specified linear algebra object from this object.
