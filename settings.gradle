@@ -1,2 +1,3 @@
 rootProject.name = 'OpenGL'
+include 'MathUtils'
 
