@@ -9,9 +9,22 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    junitVersion = '5.10.3'
+    lombokVersion = "1.18.34"
+    jetbrainsAnnotationsVersion = "26.0.1"
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation platform("org.junit:junit-bom:$junitVersion")
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    implementation "org.jetbrains:annotations:$jetbrainsAnnotationsVersion"
+
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    implementation "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 }
 
 test {
