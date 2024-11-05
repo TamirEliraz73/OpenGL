@@ -2,7 +2,7 @@ import com.nls.MathUtils.vector2.Vector2f;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class Vector2Text {
+public class Vector2Test {
     @Test
     public void f() {
         Vector2f vector2f = new Vector2f();
